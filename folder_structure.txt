@@ -1,0 +1,24 @@
+Kreditkarten_Vorhersage/
+│
+├── README.md                  # Projektbeschreibung und Anleitungen
+├── requirements.txt           # Liste der Python-Bibliotheken, die benötigt werden
+│
+├── data/                      # Ordner für Daten
+│   ├── raw/                   # Rohdaten
+│   └── processed/             # Verarbeitete Daten
+│
+├── notebooks/                 # Jupyter Notebooks für Analysen
+│
+├── src/                       # Quellcode
+│   ├── __init__.py            # Initialisierungsdatei für Python-Modul
+│   ├── data_preprocessing.py  # Datenbereinigung und -vorverarbeitung
+│   ├── features_engineering.py# Feature Engineering
+│   └── model.py               # ML-Modell
+│
+├── tests/                     # Tests für den Code
+│   ├── __init__.py            # Initialisierungsdatei für Python-Modul
+│   └── test_preprocessing.py  # Tests für die Datenbereinigung
+│
+└── results/                   # Ordner für Ergebnisse
+    ├── figures/               # Visualisierungen
+    └── models/                # Gespeicherte Modelle
