@@ -1,29 +1,31 @@
-# README #
+# Vorhersage von Kreditkartentransaktionen
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## Überblick
 
-### What is this repository for? ###
+Dieses Repository beinhaltet ein Projekt zur Vorhersage von Kreditkartentransaktionen. Es ist Teil einer Studiumsleistung und zielt darauf ab, mithilfe von maschinellen Lernmethoden die Wahrscheinlichkeit von Kreditkartentransaktionen zu erkennen. Das Projekt umfasst verschiedene Phasen von der explorativen Datenanalyse bis hin zur Modellentwicklung und -evaluation.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## Projektstruktur
 
-### How do I get set up? ###
+- `data/`: Verzeichnis für die Datensätze, die im Projekt verwendet werden.
+- `code/`: Enthält Jupyter Notebooks für verschiedene Phasen des Projekts:
+  - `1_exploratory_data_analysis.ipynb`: Explorative Datenanalyse
+  - `2_feature_engineering.ipynb`: Feature-Engineering
+  - `3_build_models.ipynb`: Modellbildung
+  - `4_business_prediction.ipynb`: Geschäftsvorhersagen
+- `tests/`: Verzeichnis für Unit-Tests.
+- `dashboard/`: Dashboard-Anwendungen zur Visualisierung der Ergebnisse.
+- `results/`: Ordner zur Speicherung von Ausgabeergebnissen wie Modellen, Grafiken usw.
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+## Installation
 
-### Contribution guidelines ###
+Um das Projekt zu starten, klonen Sie das Repository und installieren Sie die erforderlichen Abhängigkeiten:
 
-* Writing tests
-* Code review
-* Other guidelines
+```bash
+git clone [Repository-URL]
+cd model_engineering_creditdata-main
+pip install -r requirements.txt
+```
 
-### Who do I talk to? ###
+## Verwendung
 
-* Repo owner or admin
-* Other community or team contact
+Jedes Notebook im `code/`-Verzeichnis kann individuell ausgeführt werden (sofern das Notebook zuvor mindestens einmal ausgeführt wurde), um die verschiedenen Phasen des Projekts zu durchlaufen. Es wird empfohlen, die Notebooks in der angegebenen Reihenfolge zu durchlaufen.
