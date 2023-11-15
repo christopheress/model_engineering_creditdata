@@ -1,4 +1,6 @@
+# Streamlit Dashboard: Currently just design without any functionality
 import streamlit as st
+import numpy as np
 import pandas as pd
 from datetime import datetime
 
@@ -48,24 +50,45 @@ end_date = st.sidebar.date_input("End Date", min_value=min_date, max_value=max_d
 # Calculate metrics
 base_fee_rate = 0.02
 df_filtered = df[(df['tmsp'] >= pd.Timestamp(start_date)) & (df['tmsp'] <= pd.Timestamp(end_date))]
-total_fees = (df_filtered['amount'] * base_fee_rate).sum()
+total_fees = np.round((df_filtered['amount'] * base_fee_rate).sum(), 0)
 if len(df_filtered) > 0:
-    success_rate = df_filtered['success'].mean() * 100  # in percentage
+    success_rate = np.round(df_filtered['success'].mean() * 100, 2)  # in percentage
 else:
     success_rate = 0.0
 
+st.title("Predict creditcard transactions - Dashboard")
+
+# Display success factor and fees
+# Generate a date range
+date_range = pd.date_range(start="2019-01-01", end="2019-02-20")
+data = pd.DataFrame({
+    "Date": date_range,
+    "Success rate": np.random.uniform(low=0.15, high=0.3, size=len(date_range))  # Random values between 0 and 1
+})
+
+# Convert dates to weeks and calculate mean success factor per week
+data['Week'] = data['Date'].dt.isocalendar().week
+weekly_data = data.groupby('Week')['Success rate'].mean().reset_index()
+st.header("Success rate per week")
+st.bar_chart(weekly_data.set_index('Week'))
+
 # Sidebar: Fee Factor
 st.sidebar.title("Fee Factor")
-fee_factor = st.sidebar.slider("Adjust the fee factor", min_value=0.5, max_value=2.0, value=1.0, step=0.1)
-adjusted_fees = total_fees * fee_factor
+fee_factor = st.sidebar.slider("Adjust the fee factor", min_value=0.01, max_value=1.0, value=0.1, step=0.01)
+adjusted_fees = np.round(total_fees * fee_factor, 0)
+
+# Sidebar: ML Modell Version
+st.sidebar.title("Modell Version")
+options = ["prod_V1", "prod_V1.1", "prod_V2"]
+selected_option = st.sidebar.selectbox("Select modell version:", options)
 
 # Display metrics
-st.title("Machine Learning Model Dashboard")
-st.header("Before / After Comparison")
-st.write(f"Total Fees (Before Adjustment): {total_fees}")
-st.write(f"Total Fees (After Adjustment): {adjusted_fees}")
+st.header("KPIs")
+st.write(f"Total Fees: {total_fees} EUR")
 st.write(f"Success Rate: {success_rate}%")
 
 # Additional business metrics can be added here, like plotting the transaction volume over time, etc.
 
 #%%
+# Start streamlit server (Terminal)
+# streamlit run dashboard/dashboard_basis.py
